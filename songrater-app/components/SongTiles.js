@@ -6,8 +6,13 @@ import {
   StyleSheet,
   Text,
   StatusBar,
+  Button,
 } from "react-native";
 import { styles } from "../styles";
+import * as Navigation from './Navigation';
+import { useForm, Controller } from 'react-hook-form';
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
 const ratingRound = ({ ratings }) => {
   console.log(ratings);
@@ -18,7 +23,7 @@ const ratingRound = ({ ratings }) => {
   return Math.round((average / ratings.length) * 2) / 2;
 };
 
-const SongTile = ({ song, artist, ratings }) => {
+const SongTile = ({ song, artist, ratings, navigation }) => {
   const ratingRound = () => {
     console.log(ratings);
     let average = 0;
@@ -43,6 +48,18 @@ const SongTile = ({ song, artist, ratings }) => {
       <View>
         <Text style={{ fontSize: 25 }}>{song} </Text>
         <Text style={{ fontSize: 15 }}>{artist}</Text>
+        <Button
+          title="Edit"
+          onPress={() => {
+            Navigation.navigate("Edit", {
+              song: {song},
+              artist: {artist},
+            });
+          }}
+        />
+        <Button
+          title="Delete"
+        />
       </View>
       <Text style={{ fontSize: 25 }}>{ratingRound()}</Text>
     </View>

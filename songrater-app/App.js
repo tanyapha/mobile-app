@@ -1,43 +1,39 @@
-import React from "react";
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import SongTiles from "./components/SongTiles";
+import * as React from "react";
+// import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View, Button } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+
+import {navigationRef} from './components/Navigation';
+import DashboardScreen from "./components/Dashboard";
+import EditScreen from "./components/Edit";
+import SongForm from "./components/SongForm";
 import { styles } from "./styles";
 
-export default function App() {
-  let [songItem, setSongItem] = React.useState({
-    id: "tanya",
-    song: "hi",
-    artist: "",
-    rating: undefined,
-    ratings: [],
-  });
+const Stack = createStackNavigator();
 
-  let [userItem, setUserItem] = React.useState([]);
-  let [songList, setSongList] = React.useState([]);
-  let [formShow, setFormShow] = React.useState(false);
-  let [currentlyEditing, useCurrentlyEditing] = React.useState(false);
-  let [currentlyRating, setCurrentlyRating] = React.useState(false);
-
-  const API = "https://songrater-comp333.herokuapp.com/api/";
-
-  React.useEffect(() => {
-    fetch(API + "song/")
-      .then((response) => response.json())
-      .then((json) => {
-        setSongList(json);
-        console.log(songList[0]);
-      })
-      .catch((error) => console.error(error));
-  }, []);
-
+const MyStack = () => {
   return (
-    <View style={styles.container}>
-      {/* <StatusBar style="auto" /> */}
-      <Text style={{ fontSize: 30, textAlign: "center", paddingTop: 50 }}>
-        Song Rater App
-      </Text>
-      <SongTiles songList={songList} />
-    </View>
+    <NavigationContainer ref={navigationRef}>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Dashboard"
+          component={DashboardScreen}
+          options={{ title: "Songrater" }}
+        />
+        <Stack.Screen
+          name="Edit"
+          component={EditScreen}
+          options={{ title: "Edit" }}
+        />
+        <Stack.Screen
+          name="SongForm"
+          component={SongForm}
+          options={{ title: "Add a new song" }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
+
+export default MyStack;
