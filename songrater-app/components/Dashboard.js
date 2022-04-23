@@ -2,11 +2,11 @@ import React from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Button } from "react-native";
 
-import * as Navigation from './Navigation';
+import * as Navigation from "./Navigation";
 import { styles } from "../styles";
 import SongTiles from "./SongTiles";
 import EditScreen from "./Edit";
-
+import { getSongList } from "./API";
 
 export default function App() {
   let [songItem, setSongItem] = React.useState({
@@ -23,17 +23,13 @@ export default function App() {
   let [currentlyEditing, useCurrentlyEditing] = React.useState(false);
   let [currentlyRating, setCurrentlyRating] = React.useState(false);
 
-  const API = "https://songrater-comp333.herokuapp.com/api/";
-
   React.useEffect(() => {
-    fetch(API + "song/")
-      .then((response) => response.json())
-      .then((json) => {
-        setSongList(json);
-        console.log(songList[0]);
-      })
-      .catch((error) => console.error(error));
+    getSongList(setSongList);
   }, []);
+
+  refreshSong = () => {
+    getSongList(setSongList);
+  };
 
   return (
     <View style={styles.container}>

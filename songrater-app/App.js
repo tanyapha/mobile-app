@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import {navigationRef} from './components/Navigation';
+import { navigationRef } from "./components/Navigation";
 import DashboardScreen from "./components/Dashboard";
 import EditScreen from "./components/Edit";
 import SongForm from "./components/SongForm";
@@ -34,6 +34,6 @@ const MyStack = () => {
       </Stack.Navigator>
     </NavigationContainer>
   );
-}
+};
 
 export default MyStack;
