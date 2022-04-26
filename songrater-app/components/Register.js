@@ -7,7 +7,7 @@ import {
   Text,
   Alert
 } from 'react-native';
-import { userRegister } from './API';
+//import { userRegister } from './API';
 import * as Navigation from "./Navigation";
 
 export default class Login extends Component {
@@ -65,6 +65,7 @@ export default class Login extends Component {
       <TouchableOpacity
           activeOpacity={1.0}
           style={styles.container}>
+          <Text style={styles.header}>Join Songrater!</Text>
           <View
               style={styles.inputBox}>
               <TextInput
@@ -108,11 +109,20 @@ export default class Login extends Component {
 }
 
 const styles = StyleSheet.create({
+    header: {
+      fontSize: 40,
+      justifyContent: 'center',
+      alignItems:'center',
+      flexDirection:'row',
+      color: '#483d8b',
+      fontWeight: 'bold',
+      paddingVertical: 12,
+    },
     container: {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#F5FCFF',
+      backgroundColor: '#F5FCFF', // backgroun color mediumturquoise
     },
     input: {
         width: 200,
@@ -127,7 +137,7 @@ const styles = StyleSheet.create({
         width: 280,
         height: 50,
         borderRadius: 8,
-        backgroundColor: '#66f',
+        backgroundColor: '#483d8b',
         marginBottom: 8,
     },
     button: {
@@ -136,7 +146,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 8,
-        backgroundColor: '#66f',
+        backgroundColor: '#f4a460',
         marginTop: 20,
     },
     btText: {
