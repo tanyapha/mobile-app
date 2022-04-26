@@ -95,62 +95,75 @@ export default class Login extends Component {
                   style={styles.btText}
                   onPress={this.handleSubmit}>Register</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-              style={styles.button}>
-              <Text
-                  style={styles.btText}
-                  onPress={() => {Navigation.navigate("Login");}}>
-                  Log In Here
-              </Text>
-          </TouchableOpacity> 
+          <TouchableOpacity>
+            <Text style = {styles.endText}>Already have an account?</Text>
+            <Text style = {styles.endHyperText}
+                  onPress={() => {Navigation.navigate('Login');}}>
+                  Log In here!
+            </Text>
+          </TouchableOpacity>
         </TouchableOpacity>
     );
   }
 }
 
 const styles = StyleSheet.create({
-    header: {
-      fontSize: 40,
-      justifyContent: 'center',
-      alignItems:'center',
-      flexDirection:'row',
-      color: '#483d8b',
-      fontWeight: 'bold',
-      paddingVertical: 12,
-    },
-    container: {
-      flex: 1,
+  header: {
+    fontSize: 40,
+    justifyContent: 'center',
+    alignItems:'center',
+    flexDirection:'row',
+    color: '#64ae89',
+    fontWeight: 'bold',
+    paddingVertical: 40,
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#0d1913',
+  },
+  input: {
+      width: 200,
+      height: 40,
+      fontSize: 20,
+      color: '#fff', // text as white color
+  },
+  inputBox: {
+      flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#F5FCFF', // backgroun color mediumturquoise
-    },
-    input: {
-        width: 200,
-        height: 40,
-        fontSize: 20,
-        color: '#fff', // text as white color
-    },
-    inputBox: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: 280,
-        height: 50,
-        borderRadius: 8,
-        backgroundColor: '#483d8b',
-        marginBottom: 8,
-    },
-    button: {
-        height: 50,
-        width: 280,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 8,
-        backgroundColor: '#f4a460',
-        marginTop: 20,
-    },
-    btText: {
-        color: '#fff',
-        fontSize: 20,
-    }
+      width: 280,
+      height: 50,
+      borderRadius: 8,
+      backgroundColor: '#525453',
+      marginBottom: 8,
+  },
+  button: {
+      height: 50,
+      width: 280,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: 8,
+      backgroundColor: '#64ae89',
+      marginTop: 8,
+  },
+  btText: {
+      color: '#fff',
+      fontSize: 20,
+  },
+  endText: {
+      color: '#fff',
+      fontSize: 16,
+      textAlign: 'right',
+      marginTop: 40,
+  },
+  endHyperText: {
+      color: '#64ae89',
+      fontSize: 18,
+      textAlign: 'right',
+      marginTop: 5,
+      fontWeight: 'bold',
+      textDecorationLine: 'underline',
+  }
 });
