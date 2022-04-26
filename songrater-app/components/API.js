@@ -49,3 +49,43 @@ export function deleteSong(id) {
     method: "DELETE",
   }).then(console.log(id))
 }
+
+export function userLogin(data) {
+  fetch(api + 'auth/login/', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type':'application/json',
+    },
+    body: JSON.stringify({
+      username: data.username,
+      password: data.password,
+    })
+  })
+    .then((res) => {
+      console.log(res);
+      AsyncStorage.setItem('token', res.data.token);
+      AsyncStorage.setItem('user', res.data.user.username)
+      alert('Successfully logged in!');
+    })
+    .catch((err) => console.log(err));
+}
+
+export function userRegister(data) {
+  fetch(api + 'auth/register/', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type':'application/json',
+    },
+    body: JSON.stringify({
+      username: data.username,
+      password: data.password,
+    })
+  })
+    .then((res) => {
+      console.log(res);
+      alert('Successfully registered!');
+    })
+    .catch((err) => console.log(err));
+}

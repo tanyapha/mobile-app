@@ -9,6 +9,8 @@ import DashboardScreen from "./components/Dashboard";
 import EditScreen from "./components/Edit";
 import SongForm from "./components/SongForm";
 import { styles } from "./styles";
+import Login from "./components/Login";
+import Register from './components/Register';
 
 const Stack = createStackNavigator();
 
@@ -16,6 +18,16 @@ const MyStack = () => {
   return (
     <NavigationContainer ref={navigationRef}>
       <Stack.Navigator>
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{ title: "Log In" }}
+        />
+        <Stack.Screen
+          name="Register"
+          component={Register}
+          options={{ title: "Registeration"}}
+        />
         <Stack.Screen
           name="Dashboard"
           component={DashboardScreen}
