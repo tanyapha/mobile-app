@@ -12,8 +12,8 @@ import * as Navigation from "./Navigation";
 
 export default class Login extends Component {
   state = {
-    username = '',
-    password = '',
+    username : '',
+    password : '',
   };
 
   handleSubmit = async () => {
@@ -29,7 +29,7 @@ export default class Login extends Component {
 
   onPasswordChanged = (newPassword) => {
       console.log(newPassword);
-      this.setState({ password = newPassword});
+      this.setState({ password : newPassword});
   };
 
 /*   login = () => {
