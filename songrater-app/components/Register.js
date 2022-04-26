@@ -74,8 +74,11 @@ export default class Login extends Component {
           <TouchableOpacity
               style={styles.button}>
               <Text
-                  style={styles.btText}>Log in</Text>
-          </TouchableOpacity>
+                  style={styles.btText}
+                  onPress={() => {Navigation.navigate("Login");}}>
+                    Log in Here
+              </Text>
+          </TouchableOpacity> 
         </TouchableOpacity>
     );
   }

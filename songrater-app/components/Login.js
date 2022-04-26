@@ -41,10 +41,10 @@ export default class Login extends Component {
       }
   } */
 
-  register = () => {
+/*   register = () => {
       const { navigate } = this.props.navigation;
       navigate('Resgiter');
-  }
+  } */
 
   render() {
     return (
@@ -77,18 +77,25 @@ export default class Login extends Component {
           <TouchableOpacity
               style={styles.button}>
               <Text
-                  style={styles.btText}>Log in</Text>
+                  style={styles.btText}
+                  onPress={this.handleSubmit}>
+                  Log in
+              </Text>
           </TouchableOpacity>
-          <Button title="Log Me In" onPress={this.handleSubmit}/>
           <TouchableOpacity
               style={styles.button}>
               <Text
-                  style={styles.btText}>Register</Text>
+                  style={styles.btText}
+                  onPress={() => {Navigation.navigate("Register");}}>
+                  Register
+              </Text>
           </TouchableOpacity>
-          <Button 
-              title="Register Here"
-              onPress={() => {Navigation.navigate("Register");}}
-          />
+          <TouchableOpacity
+              style={styles.button}>
+              <Text
+                  onPress={() => {Navigation.navigate("SongForm");}}
+                  style={styles.btText}>Song Form</Text>
+          </TouchableOpacity>
         </TouchableOpacity>
     );
   }
