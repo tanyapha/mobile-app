@@ -49,12 +49,25 @@ const SongTile = ({ song, artist, ratings, songId, navigation }) => {
         },
       ]}
     >
-      <Pressable onPress={() => setModalVisible(true)}>
+      <Pressable
+        onPress={() => setModalVisible(true)}
+        style={{
+          flex: 1,
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
         <View>
-          <Text style={{ fontSize: 25 }}>{song} </Text>
-          <Text style={{ fontSize: 15 }}>{artist}</Text>
+          <Text style={{ fontSize: 20, fontFamily: "PoppinsBold" }}>
+            {song}{" "}
+          </Text>
+          <Text style={{ fontSize: 15, fontFamily: "PoppinsLight" }}>
+            {artist}
+          </Text>
         </View>
-        <Text style={{ fontSize: 25 }}>{ratingRound()}</Text>
+        <Text style={{ fontSize: 20, fontFamily: "PoppinsBold" }}>
+          {ratingRound()}
+        </Text>
       </Pressable>
       {modalVisible ? (
         <RatingModal

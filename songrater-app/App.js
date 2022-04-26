@@ -47,7 +47,10 @@ export default class App extends React.Component {
 
   fontLoadAsync = async () => {
     let load = await Font.loadAsync({
+      PoppinsReg: require("./assets/fonts/Poppins-Regular.ttf"),
+      PoppinsBold: require("./assets/fonts/Poppins-SemiBold.ttf"),
       FredokaOne: require("./assets/fonts/FredokaOne-Regular.ttf"),
+      PoppinsLight: require("./assets/fonts/Poppins-Light.ttf"),
     });
     this.setState({ fontLoaded: load });
   };

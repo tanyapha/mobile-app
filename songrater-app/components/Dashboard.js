@@ -38,13 +38,14 @@ export default function App() {
       {/* <StatusBar style="auto" /> */}
       <Text
         style={{
-          fontSize: 30,
+          fontSize: 40,
           textAlign: "center",
           paddingTop: 50,
-          fontFamily: "FredokaOne",
+          fontFamily: "PoppinsBold",
+          letterSpacing: 1.5,
         }}
       >
-        Song Rater App
+        Song Rater
       </Text>
       <Button
         title="New song"

@@ -5,13 +5,10 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    marginTop: 20,
-    // alignItems: "center",
-    // justifyContent: "center",
   },
   songtile_container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
+    // marginTop: StatusBar.currentHeight || 0,
   },
   tiles: {
     padding: 20,
@@ -26,12 +23,43 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     borderRadius: 10,
-    fontFamily: "FredokaOne",
+    fontFamily: "PoppinsReg",
   },
   songFormText: {
-    fontSize: 25,
-    fontFamily: "FredokaOne",
+    fontSize: 20,
+    fontFamily: "PoppinsBold",
     marginStart: 15,
     marginTop: 10,
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  modalMainText: {
+    fontFamily: "PoppinsBold",
+    fontSize: 25,
+    marginBottom: 5,
+  },
+  modalSubText: {
+    fontFamily: "PoppinsReg",
+    fontSize: 20,
+    marginBottom: 15,
   },
 });
