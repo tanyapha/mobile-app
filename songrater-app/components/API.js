@@ -49,3 +49,19 @@ export function deleteSong(id) {
     method: "DELETE",
   }).then(console.log(id))
 }
+
+
+export function updateSong(song, artist, id) {
+  fetch(api + "song/" + id + "/", {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      song_id: id,
+      song: song,
+      artist: artist,
+    }),
+  }).then(console.log("The song has been updated!"))
+}

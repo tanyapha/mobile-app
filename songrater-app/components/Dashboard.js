@@ -39,7 +39,7 @@ export default function App() {
       </Text>
       <Button
         title="New song"
-        onPress={() => {Navigation.navigate("SongForm");}}
+        onPress={() => {Navigation.navigate("SongForm")}}
       />
       <SongTiles songList={songList} />
     </View>

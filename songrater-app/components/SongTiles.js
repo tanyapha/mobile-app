@@ -13,10 +13,10 @@ import {
 import { styles } from "../styles";
 import * as Navigation from "./Navigation";
 import { deleteSong } from "./API";
+import RatingModal from "./RatingModal";
 import { useForm, Controller } from "react-hook-form";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import RatingModal from "./RatingModal";
 
 const ratingRound = ({ ratings }) => {
   console.log(ratings);
@@ -27,7 +27,7 @@ const ratingRound = ({ ratings }) => {
   return Math.round((average / ratings.length) * 2) / 2;
 };
 
-const SongTile = ({ song, artist, ratings, song_id, navigation }) => {
+const SongTile = ({ song, artist, ratings, songId, navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const ratingRound = () => {
     console.log(ratings);
@@ -57,7 +57,14 @@ const SongTile = ({ song, artist, ratings, song_id, navigation }) => {
         </View>
         <Text style={{ fontSize: 25 }}>{ratingRound()}</Text>
       </Pressable>
-      {modalVisible ? <RatingModal songId={song_id} /> : null}
+      {modalVisible ?
+        <RatingModal
+          songName={song}
+          artistName={artist}
+          songId={songId}
+          modalVisible={modalVisible}
+          setModalVisible={setModalVisible}
+        /> : null}
     </View>
   );
 };
@@ -70,7 +77,7 @@ export default function SongTiles({ songList }) {
         song={item.song}
         artist={item.artist}
         ratings={item.ratings}
-        song_id={item.id}
+        songId={item.id}
       />
     );
   };
