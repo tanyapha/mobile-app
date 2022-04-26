@@ -1,12 +1,14 @@
 import React from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Button } from "react-native";
+import StarRating from "react-native-star-rating";
 
 import * as Navigation from "./Navigation";
 import { styles } from "../styles";
 import SongTiles from "./SongTiles";
 import EditScreen from "./Edit";
 import { getSongList } from "./API";
+import StarRatingDisplay from "./StarRatingDisplay";
 
 export default function App() {
   let [songItem, setSongItem] = React.useState({
@@ -37,6 +39,7 @@ export default function App() {
       <Text style={{ fontSize: 30, textAlign: "center", paddingTop: 50 }}>
         Song Rater App
       </Text>
+      <StarRatingDisplay></StarRatingDisplay>
       <Button
         title="New song"
         onPress={() => {

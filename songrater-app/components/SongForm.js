@@ -3,6 +3,7 @@ import { styles } from "../styles";
 import { Text, View, StyleSheet, TextInput, Alert, Button } from "react-native";
 import * as Navigation from "./Navigation";
 import { addSong } from "./API";
+import StarRatingDisplay from "./StarRatingDisplay";
 
 export default class SongForm extends Component {
   state = {
@@ -25,16 +26,16 @@ export default class SongForm extends Component {
     Navigation.navigate("Dashboard");
   };
 
-  validateInput = (val) => {
-    const num = /^[0-9\b]+$/;
-    if (val > 1 && val < 5 && num.test(val)) {
-      this.setState({ validRating: true });
-    } else if (val === "") {
-      this.setState({ validRating: null });
-    } else {
-      this.setState({ validRating: false });
-    }
-  };
+  // validateInput = (val) => {
+  //   const num = /^[0-9\b]+$/;
+  //   if (val > 1 && val < 5 && num.test(val)) {
+  //     this.setState({ validRating: true });
+  //   } else if (val === "") {
+  //     this.setState({ validRating: null });
+  //   } else {
+  //     this.setState({ validRating: false });
+  //   }
+  // };
 
   render() {
     return (
@@ -54,7 +55,8 @@ export default class SongForm extends Component {
           onChangeText={(val) => this.handleChange("artist", val)}
         />
         <Text>Rating</Text>
-        <TextInput
+        <StarRatingDisplay></StarRatingDisplay>
+        {/* <TextInput
           style={styles.input}
           keyboardType="numeric"
           placeholder="Enter an artist name"
@@ -62,17 +64,11 @@ export default class SongForm extends Component {
             this.validateInput(val);
             this.handleChange("rating", val);
           }}
-        />
+        /> */}
         <Button
           title="Save"
           onPress={this.handleSubmit}
-          disabled={
-            this.state.song === "" ||
-            this.state.artist === "" ||
-            (!this.state.validRating && !this.props.currentlyEditing)
-              ? true
-              : false
-          }
+          disabled={this.state.song === "" || this.state.artist === ""}
         />
       </View>
     );
