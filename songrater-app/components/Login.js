@@ -8,8 +8,8 @@ import {
   Alert,
   Button
 } from 'react-native';
-import { userLogin } from './API';
 import * as Navigation from "./Navigation";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default class Login extends Component {
   state = {
@@ -18,10 +18,41 @@ export default class Login extends Component {
   };
 
   handleSubmit = async () => {
-    userLogin(this.state);
-    console.log(this.state);
-    Navigation.navigate("Dashboard");
-  };
+    if (!this.state.username) {
+      alert('Please enter username');
+      return;
+    }
+    if (!this.state.password) {
+      alert('Please enter password');
+      return;
+    }
+    fetch("https://songrater-comp333.herokuapp.com/api/auth/login", {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type':'application/json',
+      },
+      body: JSON.stringify({
+        username: this.state.username,
+        password: this.state.password,
+      })
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (!data.token){
+          alert('Incorrect credentials. Please check your username or password.');
+          //setErrorText(true);
+        } else {
+          console.log('Hi!'+ data.user.username + '; Your Token: ' + data.token)
+          AsyncStorage.setItem('token',JSON.stringify(data.token));
+          AsyncStorage.setItem('user',JSON.stringify(data.user));
+          alert('Hi! '+data.user.username + ', you successfully logged in!');
+          Navigation.navigate("Dashboard");
+        }
+      })
+      // need to fix the error message displaying stuff
+      .catch((err) => console.error(err));
+  }
 
   onUsernameChanged = (newUsername) => {
       this.setState({ username : newUsername});

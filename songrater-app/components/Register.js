@@ -17,9 +17,38 @@ export default class Login extends Component {
   };
 
   handleSubmit = async () => {
-    userRegister(this.state);
-    console.log(this.state);
-    Navigation.navigate("Login");
+    if (!this.state.username) {
+      alert('Please enter username');
+      return;
+    }
+    if (!this.state.password) {
+      alert('Please enter password');
+      return;
+    }
+    fetch('https://songrater-comp333.herokuapp.com/api/auth/register', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type':'application/json',
+      },
+      body: JSON.stringify({
+        username: this.state.username,
+        password: this.state.password,
+      })
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (!data.token){
+          alert('Username already exist. Please enter a different username.');
+          //setErrorText(true);
+        } else {
+          console.log(data);
+          alert('Welcome! '+data.user.username + '. You have successfully registered!');
+          Navigation.navigate("Login");
+        }
+      })
+      // need to fix the error message displaying stuff
+      .catch((err) => console.error(err));
   };
 
   onUsernameChanged = (newUsername) => {
