@@ -12,7 +12,7 @@ import StarRatingDisplay from "./StarRatingDisplay";
 
 export default function App() {
   let [songItem, setSongItem] = React.useState({
-    id: "",
+    id: "tanya",
     song: "hi",
     artist: "",
     rating: undefined,
@@ -48,7 +48,9 @@ export default function App() {
       </Text>
       <Button
         title="New song"
-        onPress={() => {Navigation.navigate("SongForm");}}
+        onPress={() => {
+          Navigation.navigate("SongForm");
+        }}
       />
       <SongTiles songList={songList} />
     </View>
