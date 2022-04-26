@@ -1,5 +1,5 @@
 import React from "react";
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const api = "https://songrater-comp333.herokuapp.com/api/";
 
 export function getSongList(setSongList) {
@@ -51,7 +51,7 @@ export function deleteSong(id) {
 }
 
 export function userLogin(data) {
-  fetch(api + 'auth/login/', {
+  fetch(api + 'auth/login', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -62,17 +62,19 @@ export function userLogin(data) {
       password: data.password,
     })
   })
-    .then((res) => {
-      console.log(res);
-      AsyncStorage.setItem('token', res.data.token);
-      AsyncStorage.setItem('user', res.data.user.username)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log('Hi!'+ data.user.username + '; Your Token: ' + data.token)
+      AsyncStorage.setItem('token',JSON.stringify(data.token));
+      AsyncStorage.setItem('user',JSON.stringify(data.user));
       alert('Successfully logged in!');
     })
+    // need to fix the error message displaying stuff
     .catch((err) => console.log(err));
 }
 
 export function userRegister(data) {
-  fetch(api + 'auth/register/', {
+  fetch(api + 'auth/register', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -83,9 +85,11 @@ export function userRegister(data) {
       password: data.password,
     })
   })
-    .then((res) => {
-      console.log(res);
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
       alert('Successfully registered!');
     })
+    // need to fix the error message displaying stuff
     .catch((err) => console.log(err));
 }

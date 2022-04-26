@@ -23,13 +23,11 @@ export default class Login extends Component {
   };
 
   onUsernameChanged = (newUsername) => {
-      console.log(newUsername);
-      this.setState({ username : newUsername});
+    this.setState({ username : newUsername});
   }
 
   onPasswordChanged = (newPassword) => {
-      console.log(newPassword);
-      this.setState({ password : newPassword});
+    this.setState({ password : newPassword});
   };
 
 

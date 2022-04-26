@@ -24,28 +24,12 @@ export default class Login extends Component {
   };
 
   onUsernameChanged = (newUsername) => {
-      console.log(newUsername);
       this.setState({ username : newUsername});
   }
 
   onPasswordChanged = (newPassword) => {
-      console.log(newPassword);
       this.setState({ password : newPassword});
   };
-
-/*   login = () => {
-      if (this.username == "jiner" && this.password == "jiner") {
-          const { navigate } = this.props.navigation;
-          navigate('Dashboard');
-      } else {
-        Alert.alert('Log in failed','Incorrect username or password');
-      }
-  } */
-
-/*   register = () => {
-      const { navigate } = this.props.navigation;
-      navigate('Resgiter');
-  } */
 
   render() {
     return (
