@@ -11,11 +11,12 @@ import {
   Pressable,
 } from "react-native";
 import { styles } from "../styles";
-import * as Navigation from './Navigation';
+import * as Navigation from "./Navigation";
 import { deleteSong } from "./API";
-import { useForm, Controller } from 'react-hook-form';
+import { useForm, Controller } from "react-hook-form";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import RatingModal from "./RatingModal";
 
 const ratingRound = ({ ratings }) => {
   console.log(ratings);
@@ -26,7 +27,7 @@ const ratingRound = ({ ratings }) => {
   return Math.round((average / ratings.length) * 2) / 2;
 };
 
-const SongTile = ({ song, artist, ratings, id, navigation }) => {
+const SongTile = ({ song, artist, ratings, song_id, navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const ratingRound = () => {
     console.log(ratings);
@@ -36,12 +37,6 @@ const SongTile = ({ song, artist, ratings, id, navigation }) => {
     }
     return Math.round((average / ratings.length) * 2) / 2;
   };
-
-
-  const handleDelete = ( {id} ) => {
-    console.log(id);
-    deleteSong(id);
-  }
 
   return (
     <View
@@ -55,49 +50,28 @@ const SongTile = ({ song, artist, ratings, id, navigation }) => {
         },
       ]}
     >
-      <Modal
-        // transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text>{song}</Text>
-            <Text>{artist}</Text>
-            <Text>{ratingRound()}</Text>
-            <Button
-              title="Edit"
-            />
-            <Button
-              title="Delete"
-              onPress={handleDelete()}
-            />
-            <Pressable onPress={() => setModalVisible(!modalVisible)}>
-              <Text>Close</Text>
-            </Pressable>
-          </View>
-        </View>
-      </Modal>
-      <Pressable
-        onPress={() => setModalVisible(true)}
-      >
+      <Pressable onPress={() => setModalVisible(true)}>
         <View>
           <Text style={{ fontSize: 25 }}>{song} </Text>
           <Text style={{ fontSize: 15 }}>{artist}</Text>
         </View>
         <Text style={{ fontSize: 25 }}>{ratingRound()}</Text>
       </Pressable>
-
+      {modalVisible ? <RatingModal songId={song_id} /> : null}
     </View>
   );
 };
 
 export default function SongTiles({ songList }) {
   const renderSongList = ({ item }) => {
+    console.log(item);
     return (
-      <SongTile song={item.song} artist={item.artist} ratings={item.ratings} id={item.song_id} />
+      <SongTile
+        song={item.song}
+        artist={item.artist}
+        ratings={item.ratings}
+        song_id={item.id}
+      />
     );
   };
   return (
