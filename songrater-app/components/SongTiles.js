@@ -9,8 +9,8 @@ import {
   Button,
 } from "react-native";
 import { styles } from "../styles";
-import * as Navigation from './Navigation';
-import { useForm, Controller } from 'react-hook-form';
+import * as Navigation from "./Navigation";
+import { useForm, Controller } from "react-hook-form";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -46,22 +46,22 @@ const SongTile = ({ song, artist, ratings, navigation }) => {
       ]}
     >
       <View>
-        <Text style={{ fontSize: 25 }}>{song} </Text>
-        <Text style={{ fontSize: 15 }}>{artist}</Text>
+        <Text style={{ fontSize: 30, fontFamily: "FredokaOne" }}>{song} </Text>
+        <Text style={{ fontSize: 20, fontFamily: "FredokaOne" }}>{artist}</Text>
         <Button
           title="Edit"
           onPress={() => {
             Navigation.navigate("Edit", {
-              song: {song},
-              artist: {artist},
+              song: { song },
+              artist: { artist },
             });
           }}
         />
-        <Button
-          title="Delete"
-        />
+        <Button title="Delete" />
       </View>
-      <Text style={{ fontSize: 25 }}>{ratingRound()}</Text>
+      <Text style={{ fontSize: 25, fontFamily: "FredokaOne" }}>
+        {ratingRound()}
+      </Text>
     </View>
   );
 };

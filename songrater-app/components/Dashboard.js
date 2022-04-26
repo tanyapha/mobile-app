@@ -36,10 +36,16 @@ export default function App() {
   return (
     <View style={styles.container}>
       {/* <StatusBar style="auto" /> */}
-      <Text style={{ fontSize: 30, textAlign: "center", paddingTop: 50 }}>
+      <Text
+        style={{
+          fontSize: 30,
+          textAlign: "center",
+          paddingTop: 50,
+          fontFamily: "FredokaOne",
+        }}
+      >
         Song Rater App
       </Text>
-      <StarRatingDisplay></StarRatingDisplay>
       <Button
         title="New song"
         onPress={() => {

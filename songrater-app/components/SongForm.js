@@ -4,6 +4,7 @@ import { Text, View, StyleSheet, TextInput, Alert, Button } from "react-native";
 import * as Navigation from "./Navigation";
 import { addSong } from "./API";
 import StarRatingDisplay from "./StarRatingDisplay";
+import { Rating } from "react-native-ratings";
 
 export default class SongForm extends Component {
   state = {
@@ -26,45 +27,25 @@ export default class SongForm extends Component {
     Navigation.navigate("Dashboard");
   };
 
-  // validateInput = (val) => {
-  //   const num = /^[0-9\b]+$/;
-  //   if (val > 1 && val < 5 && num.test(val)) {
-  //     this.setState({ validRating: true });
-  //   } else if (val === "") {
-  //     this.setState({ validRating: null });
-  //   } else {
-  //     this.setState({ validRating: false });
-  //   }
-  // };
-
   render() {
     return (
-      <View>
-        <Text>Song Name</Text>
+      <View style={{ flexDirection: "column", justifyContent: "center" }}>
+        <Text style={styles.songFormText}>Song Name</Text>
         <TextInput
           style={styles.input}
           autoCapitalize="none"
           placeholder="Enter a song name"
           onChangeText={(val) => this.handleChange("song", val)}
         />
-        <Text>Artist Name</Text>
+        <Text style={styles.songFormText}>Artist Name</Text>
         <TextInput
           style={styles.input}
           autoCapitalize="none"
           placeholder="Enter an artist name"
           onChangeText={(val) => this.handleChange("artist", val)}
         />
-        <Text>Rating</Text>
+        <Text style={styles.songFormText}>Rating</Text>
         <StarRatingDisplay></StarRatingDisplay>
-        {/* <TextInput
-          style={styles.input}
-          keyboardType="numeric"
-          placeholder="Enter an artist name"
-          onChangeText={(val) => {
-            this.validateInput(val);
-            this.handleChange("rating", val);
-          }}
-        /> */}
         <Button
           title="Save"
           onPress={this.handleSubmit}
