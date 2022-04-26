@@ -8,6 +8,7 @@ import {
   Alert,
   Button
 } from 'react-native';
+import { userLogin } from './API';
 import * as Navigation from "./Navigation";
 
 export default class Login extends Component {

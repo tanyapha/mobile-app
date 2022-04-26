@@ -8,6 +8,7 @@ import {
   Alert
 } from 'react-native';
 import { userRegister } from './API';
+import * as Navigation from "./Navigation";
 
 export default class Login extends Component {
   state = {
@@ -30,12 +31,6 @@ export default class Login extends Component {
       console.log(newPassword);
       this.setState({ password : newPassword});
   };
-
-
-/*   register = () => {
-      const { navigate } = this.props.navigation;
-      navigate('Resgiter');
-  } */
 
 
   render() {
@@ -69,14 +64,15 @@ export default class Login extends Component {
           <TouchableOpacity
               style={styles.button}>
               <Text
-                  style={styles.btText}>Register</Text>
+                  style={styles.btText}
+                  onPress={this.handleSubmit}>Register</Text>
           </TouchableOpacity>
           <TouchableOpacity
               style={styles.button}>
               <Text
                   style={styles.btText}
                   onPress={() => {Navigation.navigate("Login");}}>
-                    Log in Here
+                  Log In Here
               </Text>
           </TouchableOpacity> 
         </TouchableOpacity>
