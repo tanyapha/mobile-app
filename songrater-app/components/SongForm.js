@@ -22,8 +22,8 @@ export default class SongForm extends Component {
   };
 
   handleSubmit = async () => {
-    const { song, artist, rating } = this.state;
     addSong(this.state);
+    console.log(this.state);
     Navigation.navigate("Dashboard");
   };
 
