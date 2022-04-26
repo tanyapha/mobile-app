@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   SafeAreaView,
   View,
@@ -12,6 +12,7 @@ import { styles } from "../styles";
 import * as Navigation from "./Navigation";
 import { deleteSong } from "./API";
 import RatingModal from "./RatingModal";
+import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 import { useForm, Controller } from "react-hook-form";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
