@@ -27,6 +27,7 @@ export function addRating(song_id, rating) {
 }
 
 export function addSong(item) {
+  console.log(item.rating);
   fetch(api + "song/", {
     method: "POST",
     headers: {

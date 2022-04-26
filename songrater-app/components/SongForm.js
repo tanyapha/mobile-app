@@ -10,42 +10,46 @@ export default class SongForm extends Component {
   state = {
     song: "",
     artist: "",
-    rate: "",
-    validRating: null,
+    rating: "",
   };
 
-  handleChange = (key, val) => {
-    this.setState({
-      mobile: val.replace(/[^0-9]/g, ""),
-      [key]: val,
-    });
+  changeRating = (val) => {
+    this.setState({ rating: val });
+    console;
   };
 
   handleSubmit = async () => {
-    const { song, artist, rating } = this.state;
     addSong(this.state);
     Navigation.navigate("Dashboard");
   };
 
   render() {
     return (
-      <View style={{ flexDirection: "column", justifyContent: "center" }}>
+      <View
+        style={{
+          flexDirection: "column",
+          justifyContent: "center",
+          alignContent: "center",
+          flex: 1,
+          backgroundColor: "#FDFEFE",
+        }}
+      >
         <Text style={styles.songFormText}>Song Name</Text>
         <TextInput
           style={styles.input}
           autoCapitalize="none"
           placeholder="Enter a song name"
-          onChangeText={(val) => this.handleChange("song", val)}
+          onChangeText={(val) => this.setState({ song: val })}
         />
         <Text style={styles.songFormText}>Artist Name</Text>
         <TextInput
           style={styles.input}
           autoCapitalize="none"
           placeholder="Enter an artist name"
-          onChangeText={(val) => this.handleChange("artist", val)}
+          onChangeText={(val) => this.setState({ artist: val })}
         />
         <Text style={styles.songFormText}>Rating</Text>
-        <StarRatingDisplay></StarRatingDisplay>
+        <StarRatingDisplay changeRating={this.changeRating}></StarRatingDisplay>
         <Button
           title="Save"
           onPress={this.handleSubmit}

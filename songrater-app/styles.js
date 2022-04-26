@@ -25,6 +25,8 @@ export const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
+    borderRadius: 10,
+    fontFamily: "FredokaOne",
   },
   songFormText: {
     fontSize: 25,

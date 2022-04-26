@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import StarRating from "react-native-star-rating";
 import { View } from "react-native";
 
-export default function StarRatingDisplay() {
+export default function StarRatingDisplay({ changeRating }) {
   let [starRating, setStarRating] = React.useState(0);
 
   let onStarRatingPress = (rating) => {
     setStarRating(rating);
+    changeRating(rating);
   };
 
   return (
@@ -18,7 +19,6 @@ export default function StarRatingDisplay() {
         disabled={false}
         maxStars={5}
         rating={starRating}
-        halfStarEnabled={true}
         selectedStar={(rating) => onStarRatingPress(rating)}
       />
     </View>

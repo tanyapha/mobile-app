@@ -54,7 +54,6 @@ export default class App extends React.Component {
 
   render() {
     if (!this.state.fontLoaded) {
-      console.log("didn't work");
       return (
         <AppLoading
           startAsync={this.fontLoadAsync}
