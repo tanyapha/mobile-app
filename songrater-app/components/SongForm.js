@@ -20,14 +20,14 @@ export default class SongForm extends Component {
   };
 
   handleSubmit = async () => {
-    const { song, artist, rating } = this.state;
     addSong(this.state);
+    console.log(this.state);
     Navigation.navigate("Dashboard");
   };
 
   validateInput = (val) => {
     const num = /^[0-9\b]+$/;
-    if (val > 1 && val < 5 && num.test(val)) {
+    if (val > 0 && val < 6 && num.test(val)) {
       this.setState({ validRating: true });
     } else if (val === "") {
       this.setState({ validRating: null });

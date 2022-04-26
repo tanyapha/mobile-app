@@ -10,7 +10,7 @@ import { getSongList } from "./API";
 
 export default function App() {
   let [songItem, setSongItem] = React.useState({
-    id: "tanya",
+    id: "",
     song: "hi",
     artist: "",
     rating: undefined,
@@ -39,9 +39,7 @@ export default function App() {
       </Text>
       <Button
         title="New song"
-        onPress={() => {
-          Navigation.navigate("SongForm");
-        }}
+        onPress={() => {Navigation.navigate("SongForm");}}
       />
       <SongTiles songList={songList} />
     </View>

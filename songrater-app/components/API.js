@@ -43,3 +43,9 @@ export function addSong(item) {
       addRating(data.id, item.rating);
     });
 }
+
+export function deleteSong(id) {
+  fetch(api + "song/" + id + "/", {
+    method: "DELETE",
+  }).then(console.log(id))
+}
