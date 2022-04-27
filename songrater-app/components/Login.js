@@ -4,9 +4,7 @@ import {
   StyleSheet,
   TextInput,
   View,
-  Text,
-  Alert,
-  Button
+  Text
 } from 'react-native';
 import * as Navigation from "./Navigation";
 import AsyncStorage from '@react-native-async-storage/async-storage';
