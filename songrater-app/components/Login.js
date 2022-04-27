@@ -101,8 +101,8 @@ export default class Login extends Component {
           <TouchableOpacity
               style={styles.button}>
               <Text
-                  onPress={() => {Navigation.navigate("SongForm");}}
-                  style={styles.btText}>Song Form</Text>
+                  onPress={() => {Navigation.navigate("Dashboard");}}
+                  style={styles.btText}>Dashboard</Text>
           </TouchableOpacity>
           <TouchableOpacity>
             <Text style = {styles.endText}>Don't have an account yet?</Text>
