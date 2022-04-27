@@ -8,7 +8,7 @@ export default function StarRatingDisplay({ changeRating }) {
 
   let onStarRatingPress = (rating) => {
     setStarRating(rating);
-    changeRating(rating);
+    //changeRating(rating);
   };
 
   return (

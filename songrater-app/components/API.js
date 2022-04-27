@@ -1,7 +1,8 @@
 import React from "react";
 import ratingRound from "./RatingRound";
 
-const api = "http://127.0.0.1:8000/api/";
+// const api = "http://127.0.0.1:8000/api/";
+const api = "https://songrater-comp333.herokuapp.com/api/";
 
 export function getSongList(setSongList) {
   fetch(api + "song/")
