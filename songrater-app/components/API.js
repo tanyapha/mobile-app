@@ -44,24 +44,3 @@ export function addSong(item) {
       addRating(data.id, item.rating);
     });
 }
-
-export function deleteSong(id) {
-  fetch(api + "song/" + id + "/", {
-    method: "DELETE",
-  }).then(console.log(id));
-}
-
-export function updateSong(song, artist, id) {
-  fetch(api + "song/" + id + "/", {
-    method: "PUT",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      song_id: id,
-      song: song,
-      artist: artist,
-    }),
-  }).then(console.log("The song has been updated!"));
-}

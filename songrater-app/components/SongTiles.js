@@ -10,8 +10,6 @@ import {
 } from "react-native";
 import { styles } from "../styles";
 import * as Navigation from "./Navigation";
-import { deleteSong } from "./API";
-import RatingModal from "./RatingModal";
 import { useForm, Controller } from "react-hook-form";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -25,8 +23,7 @@ const ratingRound = ({ ratings }) => {
   return Math.round((average / ratings.length) * 2) / 2;
 };
 
-const SongTile = ({ song, artist, ratings, songId, navigation }) => {
-  const [modalVisible, setModalVisible] = useState(false);
+const SongTile = ({ song, artist, ratings, navigation }) => {
   const ratingRound = () => {
     console.log(ratings);
     let average = 0;
@@ -48,6 +45,7 @@ const SongTile = ({ song, artist, ratings, songId, navigation }) => {
         },
       ]}
     >
+<<<<<<< HEAD
       <Pressable
         onPress={() => setModalVisible(true)}
         style={{
@@ -75,8 +73,25 @@ const SongTile = ({ song, artist, ratings, songId, navigation }) => {
           songId={songId}
           modalVisible={modalVisible}
           setModalVisible={setModalVisible}
+=======
+      <View>
+        <Text style={{ fontSize: 30, fontFamily: "FredokaOne" }}>{song} </Text>
+        <Text style={{ fontSize: 20, fontFamily: "FredokaOne" }}>{artist}</Text>
+        <Button
+          title="Edit"
+          onPress={() => {
+            Navigation.navigate("Edit", {
+              song: { song },
+              artist: { artist },
+            });
+          }}
+>>>>>>> parent of 7185dff (Merge branch 'form' into starRating)
         />
-      ) : null}
+        <Button title="Delete" />
+      </View>
+      <Text style={{ fontSize: 25, fontFamily: "FredokaOne" }}>
+        {ratingRound()}
+      </Text>
     </View>
   );
 };
@@ -84,12 +99,7 @@ const SongTile = ({ song, artist, ratings, songId, navigation }) => {
 export default function SongTiles({ songList }) {
   const renderSongList = ({ item }) => {
     return (
-      <SongTile
-        song={item.song}
-        artist={item.artist}
-        ratings={item.ratings}
-        songId={item.id}
-      />
+      <SongTile song={item.song} artist={item.artist} ratings={item.ratings} />
     );
   };
   return (
