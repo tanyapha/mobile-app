@@ -1,12 +1,16 @@
 import React from "react";
+import ratingRound from "./RatingRound";
 
-const api = "https://songrater-comp333.herokuapp.com/api/";
+const api = "http://127.0.0.1:8000/api/";
 
 export function getSongList(setSongList) {
   fetch(api + "song/")
     .then((response) => response.json())
     .then((json) => {
-      setSongList(json);
+      let averageRating = json.map((e) => {
+        return { ...e, ratings: ratingRound(e.ratings) };
+      });
+      setSongList(averageRating);
     })
     .catch((error) => console.error(error));
 }
@@ -64,4 +68,19 @@ export function updateSong(song, artist, id) {
       artist: artist,
     }),
   }).then(console.log("The song has been updated!"));
+}
+
+export function handleRating(song_id) {
+  fetch(api + "rating/?username=" + "test1" + "&song_id=" + song_id).then(
+    (res) => {
+      if (res.data.length === 0) {
+        // this.addRating(item.id, item.rating);
+        console.log("add");
+      } else {
+        // this.updateRating(res.data[0], item.rating);
+        console.log("update");
+      }
+    }
+  );
+  return;
 }

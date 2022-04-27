@@ -15,12 +15,13 @@ export default class SongForm extends Component {
 
   changeRating = (val) => {
     this.setState({ rating: val });
-    console;
   };
 
   handleSubmit = async () => {
     addSong(this.state);
-    Navigation.navigate("Dashboard");
+    setTimeout(() => {
+      Navigation.navigate("Dashboard");
+    }, 50);
   };
 
   render() {

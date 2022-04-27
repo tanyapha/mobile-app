@@ -5,8 +5,15 @@ import { styles } from "../styles";
 import { deleteSong } from "./API";
 
 import StarRatingDisplay from "./StarRatingDisplay";
+import { set } from "react-native-reanimated";
 
 export default function RatingModal(props) {
+  let [rating, setRating] = useState(0);
+
+  const updateRating = (rating) => {
+    setRating(rating);
+  };
+
   const handleEdit = (songName, artistName, songId, setModalVisible) => {
     setModalVisible(false);
     Navigation.navigate("Edit", {
@@ -26,9 +33,12 @@ export default function RatingModal(props) {
     <Modal transparent={true} visible={true} isOpen={props.modalVisible}>
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
+          <Pressable onPress={() => props.setModalVisible(false)}>
+            <Text>close</Text>
+          </Pressable>
           <Text style={styles.modalMainText}>{props.songName}</Text>
           <Text style={styles.modalSubText}>{props.artistName}</Text>
-          <StarRatingDisplay />
+          <StarRatingDisplay changeRating={updateRating} />
           <Pressable
             onPress={() =>
               handleEdit(
@@ -46,8 +56,10 @@ export default function RatingModal(props) {
           >
             <Text>Delete</Text>
           </Pressable>
-          <Pressable onPress={() => props.setModalVisible(false)}>
-            <Text>Close</Text>
+          <Pressable
+            onPress={() => handleDelete(props.songId, props.setModalVisible)}
+          >
+            <Text>Rate</Text>
           </Pressable>
         </View>
       </View>

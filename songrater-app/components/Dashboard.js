@@ -9,6 +9,7 @@ import SongTiles from "./SongTiles";
 import EditScreen from "./Edit";
 import { getSongList } from "./API";
 import StarRatingDisplay from "./StarRatingDisplay";
+import { useIsFocused } from "@react-navigation/native";
 
 export default function App() {
   let [songItem, setSongItem] = React.useState({
@@ -25,9 +26,11 @@ export default function App() {
   let [currentlyEditing, useCurrentlyEditing] = React.useState(false);
   let [currentlyRating, setCurrentlyRating] = React.useState(false);
 
+  const focused = useIsFocused();
+
   React.useEffect(() => {
     getSongList(setSongList);
-  }, []);
+  }, [focused]);
 
   refreshSong = () => {
     getSongList(setSongList);
