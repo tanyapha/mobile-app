@@ -1,6 +1,12 @@
 import React from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  ActivityIndicator,
+} from "react-native";
 import StarRating from "react-native-star-rating";
 
 import * as Navigation from "./Navigation";
@@ -10,6 +16,7 @@ import EditScreen from "./Edit";
 import { getSongList } from "./API";
 import StarRatingDisplay from "./StarRatingDisplay";
 import { useIsFocused } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function App() {
   let [songItem, setSongItem] = React.useState({
@@ -20,16 +27,29 @@ export default function App() {
     ratings: [],
   });
 
+  let [user, setUser] = React.useState("");
+
+  let getName = async () => {
+    try {
+      const value = await AsyncStorage.getItem("user");
+      if (value !== null) {
+        setUser(value);
+        console.log(user);
+      }
+    } catch (error) {
+      console.log("error");
+    }
+  };
+
   let [userItem, setUserItem] = React.useState([]);
   let [songList, setSongList] = React.useState([]);
-  let [formShow, setFormShow] = React.useState(false);
-  let [currentlyEditing, useCurrentlyEditing] = React.useState(false);
-  let [currentlyRating, setCurrentlyRating] = React.useState(false);
+  let [loading, setLoading] = React.useState(false);
 
   const focused = useIsFocused();
 
   React.useEffect(() => {
     getSongList(setSongList);
+    getName();
   }, [focused]);
 
   refreshSong = () => {
@@ -38,6 +58,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <ActivityIndicator size="large"></ActivityIndicator>
       {/* <StatusBar style="auto" /> */}
       <Text
         style={{
