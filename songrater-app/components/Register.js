@@ -7,7 +7,6 @@ import {
   Text,
   Alert
 } from 'react-native';
-//import { userRegister } from './API';
 import * as Navigation from "./Navigation";
 
 export default class Login extends Component {

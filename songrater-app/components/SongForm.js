@@ -3,76 +3,57 @@ import { styles } from "../styles";
 import { Text, View, StyleSheet, TextInput, Alert, Button } from "react-native";
 import * as Navigation from "./Navigation";
 import { addSong } from "./API";
+import StarRatingDisplay from "./StarRatingDisplay";
+import { Rating } from "react-native-ratings";
 
 export default class SongForm extends Component {
   state = {
     song: "",
     artist: "",
-    rate: "",
-    validRating: null,
+    rating: "",
   };
 
-  handleChange = (key, val) => {
-    this.setState({
-      mobile: val.replace(/[^0-9]/g, ""),
-      [key]: val,
-    });
+  changeRating = (val) => {
+    this.setState({ rating: val });
+    console;
   };
 
   handleSubmit = async () => {
     addSong(this.state);
-    console.log(this.state);
     Navigation.navigate("Dashboard");
-  };
-
-  validateInput = (val) => {
-    const num = /^[0-9\b]+$/;
-    if (val > 0 && val < 6 && num.test(val)) {
-      this.setState({ validRating: true });
-    } else if (val === "") {
-      this.setState({ validRating: null });
-    } else {
-      this.setState({ validRating: false });
-    }
   };
 
   render() {
     return (
-      <View>
-        <Text>Song Name</Text>
+      <View
+        style={{
+          flexDirection: "column",
+          justifyContent: "center",
+          alignContent: "center",
+          flex: 1,
+          backgroundColor: "#FDFEFE",
+        }}
+      >
+        <Text style={styles.songFormText}>Song Name</Text>
         <TextInput
           style={styles.input}
           autoCapitalize="none"
           placeholder="Enter a song name"
-          onChangeText={(val) => this.handleChange("song", val)}
+          onChangeText={(val) => this.setState({ song: val })}
         />
-        <Text>Artist Name</Text>
+        <Text style={styles.songFormText}>Artist Name</Text>
         <TextInput
           style={styles.input}
           autoCapitalize="none"
           placeholder="Enter an artist name"
-          onChangeText={(val) => this.handleChange("artist", val)}
+          onChangeText={(val) => this.setState({ artist: val })}
         />
-        <Text>Rating</Text>
-        <TextInput
-          style={styles.input}
-          keyboardType="numeric"
-          placeholder="Enter an artist name"
-          onChangeText={(val) => {
-            this.validateInput(val);
-            this.handleChange("rating", val);
-          }}
-        />
+        <Text style={styles.songFormText}>Rating</Text>
+        <StarRatingDisplay changeRating={this.changeRating}></StarRatingDisplay>
         <Button
           title="Save"
           onPress={this.handleSubmit}
-          disabled={
-            this.state.song === "" ||
-            this.state.artist === "" ||
-            (!this.state.validRating && !this.props.currentlyEditing)
-              ? true
-              : false
-          }
+          disabled={this.state.song === "" || this.state.artist === ""}
         />
       </View>
     );
