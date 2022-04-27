@@ -3,5 +3,5 @@ export default function ratingRound(ratings) {
   for (let val of ratings) {
     average += val;
   }
-  return Math.round((average / ratings.length) * 2) / 2;
+  return Math.round(average / ratings.length);
 }

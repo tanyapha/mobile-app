@@ -31,7 +31,6 @@ export function addRating(song_id, rating) {
 }
 
 export function addSong(item) {
-  console.log(item.rating);
   fetch(api + "song/", {
     method: "POST",
     headers: {
@@ -49,10 +48,12 @@ export function addSong(item) {
     });
 }
 
-export function deleteSong(id) {
+export function deleteSong(id, setSongList) {
   fetch(api + "song/" + id + "/", {
     method: "DELETE",
-  }).then(console.log(id));
+  })
+    .then(console.log(id))
+    .then(getSongList(setSongList));
 }
 
 export function updateSong(song, artist, id) {
@@ -70,17 +71,33 @@ export function updateSong(song, artist, id) {
   }).then(console.log("The song has been updated!"));
 }
 
-export function handleRating(song_id) {
-  fetch(api + "rating/?username=" + "test1" + "&song_id=" + song_id).then(
-    (res) => {
-      if (res.data.length === 0) {
-        // this.addRating(item.id, item.rating);
+export function updateRating(song_info, rating) {
+  fetch(api + "rating/" + song_info.id + "/", {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      song_id: song_info.song_id,
+      username: song_info.username,
+      rating: rating,
+    }),
+  }).then(console.log("yay, its been updated 😍!!!"));
+}
+
+export function handleRating(song_id, rating, setSongList) {
+  fetch(api + "rating/?username=" + "test1" + "&song_id=" + song_id)
+    .then((response) => response.json())
+    .then((json) => {
+      if (json.length === 0) {
+        addRating(song_id, rating);
         console.log("add");
       } else {
-        // this.updateRating(res.data[0], item.rating);
+        updateRating(json[0], rating);
         console.log("update");
       }
-    }
-  );
+    })
+    .then(getSongList(setSongList));
   return;
 }

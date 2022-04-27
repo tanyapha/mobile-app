@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, View, Text, Button, Pressable } from "react-native";
 import * as Navigation from "./Navigation";
 import { styles } from "../styles";
-import { deleteSong } from "./API";
+import { deleteSong, handleRating } from "./API";
 
 import StarRatingDisplay from "./StarRatingDisplay";
 import { set } from "react-native-reanimated";
@@ -24,10 +24,11 @@ export default function RatingModal(props) {
   };
 
   const handleDelete = (songId, setModalVisible) => {
-    deleteSong(songId);
+    deleteSong(songId, props.setSongList);
     console.log("The song was deleted!");
     setModalVisible(false);
   };
+  console.log(rating);
 
   return (
     <Modal transparent={true} visible={true} isOpen={props.modalVisible}>
@@ -57,7 +58,9 @@ export default function RatingModal(props) {
             <Text>Delete</Text>
           </Pressable>
           <Pressable
-            onPress={() => handleDelete(props.songId, props.setModalVisible)}
+            onPress={() =>
+              handleRating(props.songId, rating, props.setSongList)
+            }
           >
             <Text>Rate</Text>
           </Pressable>

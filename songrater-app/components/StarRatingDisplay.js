@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import StarRating from "react-native-star-rating";
+import { Rating } from "react-native-ratings";
 import { View } from "react-native";
 
 export default function StarRatingDisplay({ changeRating }) {
@@ -12,7 +13,16 @@ export default function StarRatingDisplay({ changeRating }) {
 
   return (
     <View style={{ justifyContent: "center", flexDirection: "row" }}>
-      <StarRating
+      <Rating
+        type="heart"
+        ratingCount={5}
+        imageSize={60}
+        showRating
+        onFinishRating={(e) => {
+          onStarRatingPress(e);
+        }}
+      />
+      {/* <StarRating
         starStyle={{ margin: 10, borderColor: "#D7DBDD" }}
         fullStarColor="#FFC300"
         starSize={50}
@@ -20,7 +30,7 @@ export default function StarRatingDisplay({ changeRating }) {
         maxStars={5}
         rating={starRating}
         selectedStar={(rating) => onStarRatingPress(rating)}
-      />
+      /> */}
     </View>
   );
 }

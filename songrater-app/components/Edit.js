@@ -1,23 +1,20 @@
-import React, { Component } from 'react';
-import {styles} from '../styles';
+import React, { Component } from "react";
+import { styles } from "../styles";
 import { updateSong } from "./API";
-import { Text, View, StyleSheet, TextInput, Alert, Button } from 'react-native';
-import { useForm, Controller } from 'react-hook-form';
+import { Text, View, StyleSheet, TextInput, Alert, Button } from "react-native";
+import { useForm, Controller } from "react-hook-form";
 import * as Navigation from "./Navigation";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-export default function Edit ({ route, navigation }) {
+export default function Edit({ route, navigation }) {
   const { song, artist, id } = route.params;
   const [upSong, setUpSong] = React.useState([]);
   const [upArtist, setUpArtist] = React.useState([]);
 
   const handleSubmit = () => {
-    console.log(upSong);
-    console.log(upArtist);
-    console.log(id);
-    updateSong(upSong, upArtist, id)
-    Navigation.navigate("Dashboard")
+    updateSong(upSong, upArtist, id);
+    Navigation.navigate("Dashboard");
   };
 
   return (
@@ -36,10 +33,7 @@ export default function Edit ({ route, navigation }) {
         defaultValue={JSON.stringify(artist)}
         onChangeText={(val) => setUpArtist(val)}
       />
-      <Button
-        title="Save"
-        onPress={handleSubmit}
-      />
+      <Button title="Save" onPress={handleSubmit} />
     </View>
   );
 }
