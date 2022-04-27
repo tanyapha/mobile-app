@@ -1,5 +1,4 @@
 import React from "react";
-
 const api = "https://songrater-comp333.herokuapp.com/api/";
 
 export function getSongList(setSongList) {
