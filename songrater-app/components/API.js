@@ -54,7 +54,11 @@ export function deleteSong(id, setSongList) {
     method: "DELETE",
   })
     .then(console.log(id))
-    .then(getSongList(setSongList));
+    .then(
+      setTimeout(() => {
+        getSongList(setSongList);
+      }, 15)
+    );
 }
 
 export function updateSong(song, artist, id) {

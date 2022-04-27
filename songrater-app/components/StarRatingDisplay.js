@@ -8,7 +8,7 @@ export default function StarRatingDisplay({ changeRating }) {
 
   let onStarRatingPress = (rating) => {
     setStarRating(rating);
-    //changeRating(rating);
+    changeRating(rating);
   };
 
   return (
@@ -18,19 +18,11 @@ export default function StarRatingDisplay({ changeRating }) {
         ratingCount={5}
         imageSize={60}
         showRating
+        startingValue={0}
         onFinishRating={(e) => {
           onStarRatingPress(e);
         }}
       />
-      {/* <StarRating
-        starStyle={{ margin: 10, borderColor: "#D7DBDD" }}
-        fullStarColor="#FFC300"
-        starSize={50}
-        disabled={false}
-        maxStars={5}
-        rating={starRating}
-        selectedStar={(rating) => onStarRatingPress(rating)}
-      /> */}
     </View>
   );
 }
