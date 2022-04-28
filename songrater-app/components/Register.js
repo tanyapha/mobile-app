@@ -9,6 +9,8 @@ import {
 } from "react-native";
 import * as Navigation from "./Navigation";
 
+const api = "http://127.0.0.1:8000/api/auth/register";
+
 export default class Login extends Component {
   state = {
     username: "",
@@ -24,7 +26,7 @@ export default class Login extends Component {
       alert("Please enter password");
       return;
     }
-    fetch("https://songrater-comp333.herokuapp.com/api/auth/register", {
+    fetch(api, {
       method: "POST",
       headers: {
         Accept: "application/json",

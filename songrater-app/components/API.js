@@ -3,8 +3,8 @@ import ratingRound from "./RatingRound";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useIsFocused } from "@react-navigation/core";
 
-// const api = "http://127.0.0.1:8000/api/";
-const api = "https://songrater-comp333.herokuapp.com/api/";
+const api = "http://127.0.0.1:8000/api/";
+// const api = "https://songrater-comp333.herokuapp.com/api/";
 
 export async function getUsername(setUser) {
   try {
@@ -42,10 +42,10 @@ export function addRating(user, song_id, rating) {
       username: user,
       rating: rating,
     }),
-  }).then(console.log('YES! '+user + " added a rating: "+ rating));
+  }).then(console.log("YES! " + user + " added a rating: " + rating));
 }
 
-export function addSong(user,newsong,newartist,newrating) {
+export function addSong(user, newsong, newartist, newrating) {
   fetch(api + "song/", {
     method: "POST",
     headers: {
@@ -59,8 +59,8 @@ export function addSong(user,newsong,newartist,newrating) {
   })
     .then((response) => response.json())
     .then((data) => {
-      addRating(user,data.id, newrating);
-      console.log('WOW! ' + user+' rated a new song: '+newrating);
+      addRating(user, data.id, newrating);
+      console.log("WOW! " + user + " rated a new song: " + newrating);
     });
 }
 
@@ -68,7 +68,7 @@ export function deleteSong(id, setSongList) {
   fetch(api + "song/" + id + "/", {
     method: "DELETE",
   })
-    .then(console.log('DELETE song id: '+ id))
+    .then(console.log("DELETE song id: " + id))
     .then(
       setTimeout(() => {
         getSongList(setSongList);
@@ -103,7 +103,9 @@ export function updateRating(song_info, rating) {
       username: song_info.username,
       rating: rating,
     }),
-  }).then(console.log("YAY! " + song_info.username +' updated a rating: '+rating));
+  }).then(
+    console.log("YAY! " + song_info.username + " updated a rating: " + rating)
+  );
 }
 
 export function handleRating(user, song_id, rating, setSongList) {

@@ -10,8 +10,8 @@ import * as Navigation from "./Navigation";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ActivityIndicator } from "react-native";
 
-// const api = "http://127.0.0.1:8000/api/auth/login";
-const api = "https://songrater-comp333.herokuapp.com/api/auth/login";
+const api = "http://127.0.0.1:8000/api/auth/login";
+// const api = "https://songrater-comp333.herokuapp.com/api/auth/login";
 
 export default class Login extends Component {
   state = {
