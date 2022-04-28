@@ -60,6 +60,7 @@ export function addSong(user,newsong,newartist,newrating) {
     .then((response) => response.json())
     .then((data) => {
       addRating(user,data.id, newrating);
+      console.log(user+' added rating: '+newrating);
     });
 }
 

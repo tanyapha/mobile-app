@@ -9,7 +9,7 @@ export default function SongForm({route}) {
   const {username} = route.params;
   const [upSong, setUpSong] = React.useState("");
   const [upArtist, setUpArtist] = React.useState("");
-  const [upRating, setUpRating] = React.useState("");
+  const [upRating, setUpRating] = React.useState(0);
 
   const handleSubmit = () => {
     addSong(username, upSong, upArtist, upRating);
