@@ -72,4 +72,17 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 15,
   },
+  btText: {
+    color: "#fff",
+    fontSize: 20,
+  },
+  buttonBack: {
+    height: 50,
+    width: 280,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 8,
+    backgroundColor: "#64ae89",
+    marginTop: 8,
+  },
 });

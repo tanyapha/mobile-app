@@ -4,18 +4,19 @@ import { Text, View, TextInput, Button } from "react-native";
 import * as Navigation from "./Navigation";
 import { addSong } from "./API";
 import StarRatingDisplay from "./StarRatingDisplay";
+import AddsongModal from "./AddsongModal";
 
 export default function SongForm({route}) {
   const {username} = route.params;
   const [song, setUpSong] = React.useState("");
   const [artist, setUpArtist] = React.useState("");
   const [rating, setUpRating] = React.useState(0);
-
+  const [modalVisible, setModalVisible] = React.useState(false);
   const handleSubmit = () => {
     addSong(username, song, artist, rating);
+    setModalVisible(true);
   };
-
-  //render() {
+  
     return (
       <View
         style={{
@@ -51,6 +52,13 @@ export default function SongForm({route}) {
           title="Return to Dashboard"
           onPress={() => {Navigation.navigate("Dashboard");}}
         />
+        {modalVisible ? (
+          <AddsongModal
+            modalVisible={modalVisible}
+            setModalVisible={setModalVisible}
+            user={username}
+          />
+        ) : null}
       </View>
     );
   //}
