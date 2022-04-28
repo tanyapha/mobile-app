@@ -57,7 +57,7 @@ export function deleteSong(id, setSongList) {
     .then(
       setTimeout(() => {
         getSongList(setSongList);
-      }, 15)
+      }, 8)
     );
 }
 
@@ -103,6 +103,10 @@ export function handleRating(song_id, rating, setSongList) {
         console.log("update");
       }
     })
-    .then(getSongList(setSongList));
+    .then(
+      setTimeout(() => {
+        getSongList(setSongList);
+      }, 8)
+    );
   return;
 }
