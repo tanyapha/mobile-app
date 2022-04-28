@@ -42,7 +42,7 @@ export function addRating(user, song_id, rating) {
       username: user,
       rating: rating,
     }),
-  }).then(console.log("Yay " + user + "!!! rating for new song added"));
+  }).then(console.log('YES! '+user + " added a rating: "+ rating));
 }
 
 export function addSong(user,newsong,newartist,newrating) {
@@ -60,7 +60,7 @@ export function addSong(user,newsong,newartist,newrating) {
     .then((response) => response.json())
     .then((data) => {
       addRating(user,data.id, newrating);
-      console.log(user+' added rating: '+newrating);
+      console.log('WOW! ' + user+' rated a new song: '+newrating);
     });
 }
 
@@ -103,7 +103,7 @@ export function updateRating(song_info, rating) {
       username: song_info.username,
       rating: rating,
     }),
-  }).then(console.log("yay " + song_info.username +'! its been updated 😍!!!'));
+  }).then(console.log("YAY! " + song_info.username +' updated a rating: '+rating));
 }
 
 export function handleRating(user, song_id, rating, setSongList) {
@@ -112,10 +112,10 @@ export function handleRating(user, song_id, rating, setSongList) {
     .then((response) => response.json())
     .then((json) => {
       if (json.length === 0) {
-        console.log(user + " added");
+        //console.log(user + " added");
         addRating(user, song_id, rating);
       } else {
-        console.log(user + "updated");
+        //console.log(user + "updated");
         updateRating(json[0], rating);
       }
     })

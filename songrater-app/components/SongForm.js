@@ -7,13 +7,12 @@ import StarRatingDisplay from "./StarRatingDisplay";
 
 export default function SongForm({route}) {
   const {username} = route.params;
-  const [upSong, setUpSong] = React.useState("");
-  const [upArtist, setUpArtist] = React.useState("");
-  const [upRating, setUpRating] = React.useState(0);
+  const [song, setUpSong] = React.useState("");
+  const [artist, setUpArtist] = React.useState("");
+  const [rating, setUpRating] = React.useState(0);
 
   const handleSubmit = () => {
-    addSong(username, upSong, upArtist, upRating);
-    Navigation.navigate("Dashboard");
+    addSong(username, song, artist, rating);
   };
 
   //render() {
@@ -46,7 +45,11 @@ export default function SongForm({route}) {
         <Button
           title="Save"
           onPress={handleSubmit}
-          disabled={upSong === "" || upArtist === ""}
+          disabled={song === "" || artist === ""}
+        />
+        <Button
+          title="Return to Dashboard"
+          onPress={() => {Navigation.navigate("Dashboard");}}
         />
       </View>
     );

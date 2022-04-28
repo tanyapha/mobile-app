@@ -9,11 +9,6 @@ import { set } from "react-native-reanimated";
 
 export default function RatingModal(props) {
   let [rating, setRating] = useState(0);
-  let [user, setUser] = useState("");
-
-  React.useEffect(() => {
-    getUsername(setUser);
-  });
 
   const updateRating = (rating) => {
     setRating(rating);
