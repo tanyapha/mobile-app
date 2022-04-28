@@ -37,48 +37,51 @@ export default function RatingModal(props) {
 
   return (
     <Modal transparent={true} visible={true} isOpen={props.modalVisible}>
-    <View style={styles.centeredView}>
-      <View style={styles.modalView}>
-        <Text style={styles.modalMainText}>{props.songName}</Text>
-        <Text style={styles.modalSubText}>{props.artistName}</Text>
-        <StarRatingDisplay changeRating={updateRating} />
-        <View style={styles.buttonContainer}>
-          <Pressable
-            style={styles.button}
-            onPress={() =>
-              handleEdit(
-                props.songName,
-                props.artistName,
-                props.songId,
-                props.setModalVisible
-              )
-            }
-          >
-            <Text style={{ color: 'blue' }}>Edit</Text>
-          </Pressable>
-          <Pressable
-            style={styles.button}
-            onPress={() => handleDelete(props.songId, props.setModalVisible)}
-          >
-            <Text style={{ color: 'red' }}>Delete</Text>
-          </Pressable>
-          <Pressable
-            style={styles.button}
-            onPress={() =>
-              handleRating(props.songId, rating, props.setSongList)
-            }
-          >
-            <Text style={{ color: 'green' }}>Rate</Text>
+      <View style={styles.centeredView}>
+        <View style={styles.modalView}>
+          <Text style={styles.modalMainText}>{props.songName}</Text>
+          <Text style={styles.modalSubText}>{props.artistName}</Text>
+          <StarRatingDisplay changeRating={updateRating} />
+          <View style={styles.buttonContainer}>
+            <Pressable
+              style={styles.button}
+              onPress={() =>
+                handleEdit(
+                  props.songName,
+                  props.artistName,
+                  props.songId,
+                  props.setModalVisible
+                )
+              }
+            >
+              <Text style={{ color: "blue" }}>Edit</Text>
+            </Pressable>
+            <Pressable
+              style={styles.button}
+              onPress={() => handleDelete(props.songId, props.setModalVisible)}
+            >
+              <Text style={{ color: "red" }}>Delete</Text>
+            </Pressable>
+            <Pressable
+              style={styles.button}
+              onPress={() =>
+                handleRating(
+                  props.user,
+                  props.songId,
+                  rating,
+                  props.setSongList
+                )
+              }
+            >
+              <Text style={{ color: "green" }}>Rate</Text>
+            </Pressable>
+          </View>
+
+          <Pressable onPress={() => props.setModalVisible(false)}>
+            <Text>close</Text>
           </Pressable>
         </View>
-
-        <Pressable
-          onPress={() => props.setModalVisible(false)}
-        >
-          <Text>close</Text>
-        </Pressable>
       </View>
-    </View>
     </Modal>
   );
 }

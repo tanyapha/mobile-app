@@ -89,7 +89,7 @@ export default function App() {
           Navigation.navigate("SongForm");
         }}
       />
-      <SongTiles songList={songList} setSongList={setSongList} />
+      <SongTiles songList={songList} setSongList={setSongList} user={user} />
     </View>
   );
 }

@@ -17,7 +17,7 @@ import { useForm, Controller } from "react-hook-form";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-const SongTile = ({ song, artist, ratings, songId, setSongList }) => {
+const SongTile = ({ song, artist, ratings, songId, setSongList, user }) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
@@ -54,13 +54,14 @@ const SongTile = ({ song, artist, ratings, songId, setSongList }) => {
           modalVisible={modalVisible}
           setModalVisible={setModalVisible}
           setSongList={setSongList}
+          user={user}
         />
       ) : null}
     </View>
   );
 };
 
-export default function SongTiles({ songList, setSongList }) {
+export default function SongTiles({ songList, setSongList, user }) {
   const renderSongList = ({ item }) => {
     return (
       <SongTile
@@ -69,6 +70,7 @@ export default function SongTiles({ songList, setSongList }) {
         ratings={item.ratings}
         songId={item.id}
         setSongList={setSongList}
+        user={user}
       />
     );
   };

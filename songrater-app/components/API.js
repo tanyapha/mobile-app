@@ -5,18 +5,13 @@ import { useIsFocused } from "@react-navigation/core";
 
 // const api = "http://127.0.0.1:8000/api/";
 const api = "https://songrater-comp333.herokuapp.com/api/";
-//const [user,setUser] = React.useState('');
-//const focused = useIsFocused();
-/* React.useEffect(() => {
-  getUsername(setUser);
-}, [focused]); */
 
 export async function getUsername(setUser) {
   try {
     const value = await AsyncStorage.getItem("user");
     if (value !== null) {
       setUser(value);
-      console.log('Hi'+value)
+      console.log("Hi" + value);
     }
   } catch (error) {
     console.log("error");
@@ -30,6 +25,7 @@ export function getSongList(setSongList) {
       let averageRating = json.map((e) => {
         return { ...e, ratings: ratingRound(e.ratings) };
       });
+      console.log("refresh");
       setSongList(averageRating);
     })
     .catch((error) => console.error(error));
@@ -47,7 +43,7 @@ export function addRating(user, song_id, rating) {
       username: user,
       rating: rating,
     }),
-  }).then(console.log("Hi!"+ user + " yay!!! rating for new song added"));
+  }).then(console.log("Hi!" + user + " yay!!! rating for new song added"));
 }
 
 export function addSong(item) {
@@ -111,15 +107,16 @@ export function updateRating(song_info, rating) {
 }
 
 export function handleRating(user, song_id, rating, setSongList) {
+  console.log(user);
   fetch(api + "rating/?username=" + user + "&song_id=" + song_id)
     .then((response) => response.json())
     .then((json) => {
       if (json.length === 0) {
+        console.log(user + "added");
         addRating(user, song_id, rating);
-        console.log(user+"added");
       } else {
-        updateRating(json[0], rating);
         console.log("update");
+        updateRating(json[0], rating);
       }
     })
     .then(
