@@ -13,7 +13,7 @@ import * as Navigation from "./Navigation";
 import { styles } from "../styles";
 import SongTiles from "./SongTiles";
 import EditScreen from "./Edit";
-import { getSongList } from "./API";
+import { getSongList, getUsername } from "./API";
 import StarRatingDisplay from "./StarRatingDisplay";
 import { useIsFocused } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -27,8 +27,7 @@ export default function App() {
     ratings: [],
   });
 
-  let [user, setUser] = React.useState("");
-
+/*   let [user, setUser] = React.useState("");
   let getName = async () => {
     try {
       const value = await AsyncStorage.getItem("user");
@@ -39,8 +38,9 @@ export default function App() {
     } catch (error) {
       console.log("error");
     }
-  };
+  }; */
 
+  let [user, setUser] = React.useState("");
   let [userItem, setUserItem] = React.useState([]);
   let [songList, setSongList] = React.useState([]);
   let [loading, setLoading] = React.useState(false);
@@ -49,7 +49,7 @@ export default function App() {
 
   React.useEffect(() => {
     getSongList(setSongList);
-    getName();
+    getUsername(setUser);
   }, [focused]);
 
   refreshSong = () => {
@@ -70,6 +70,17 @@ export default function App() {
         }}
       >
         Song Rater
+      </Text>
+      <Text
+        style={{
+          fontSize: 20,
+          textAlign: 'center',
+          paddingTop: 10,
+          fontFamily: 'PoppinsBold',
+          letterSpacing : 1.5,
+        }}
+      >
+        Hi {user.charAt(0).toUpperCase()+user.slice(1)}
       </Text>
       <Button
         title="New song"

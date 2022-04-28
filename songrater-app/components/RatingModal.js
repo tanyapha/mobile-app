@@ -2,14 +2,19 @@ import React, { useState } from "react";
 import { Modal, View, Text, Button, Pressable } from "react-native";
 import * as Navigation from "./Navigation";
 import { styles } from "../styles";
-import { deleteSong, handleRating } from "./API";
+import { deleteSong, getUsername, handleRating } from "./API";
 
 import StarRatingDisplay from "./StarRatingDisplay";
 import { set } from "react-native-reanimated";
 
 export default function RatingModal(props) {
   let [rating, setRating] = useState(0);
+  let [user, setUser] = useState("");
 
+  React.useEffect(() => {
+    getUsername(setUser);
+  });
+  
   const updateRating = (rating) => {
     setRating(rating);
   };
@@ -59,7 +64,7 @@ export default function RatingModal(props) {
           </Pressable>
           <Pressable
             onPress={() =>
-              handleRating(props.songId, rating, props.setSongList)
+              handleRating(user, props.songId, rating, props.setSongList)
             }
           >
             <Text>Rate</Text>
