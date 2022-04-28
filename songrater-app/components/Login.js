@@ -44,7 +44,7 @@ export default class Login extends Component {
         } else {
           console.log('Hi!'+ data.user.username + '; Your Token: ' + data.token)
           AsyncStorage.setItem('token',JSON.stringify(data.token));
-          AsyncStorage.setItem('user',JSON.stringify(data.user));
+          AsyncStorage.setItem('user',data.user.username);
           alert('Hi! '+data.user.username + ', you successfully logged in!');
           Navigation.navigate("Dashboard");
         }

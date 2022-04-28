@@ -1,8 +1,27 @@
 import React from "react";
 import ratingRound from "./RatingRound";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useIsFocused } from "@react-navigation/core";
 
 // const api = "http://127.0.0.1:8000/api/";
 const api = "https://songrater-comp333.herokuapp.com/api/";
+//const [user,setUser] = React.useState('');
+//const focused = useIsFocused();
+/* React.useEffect(() => {
+  getUsername(setUser);
+}, [focused]); */
+
+export async function getUsername(setUser) {
+  try {
+    const value = await AsyncStorage.getItem("user");
+    if (value !== null) {
+      setUser(value);
+      console.log('Hi'+value)
+    }
+  } catch (error) {
+    console.log("error");
+  }
+}
 
 export function getSongList(setSongList) {
   fetch(api + "song/")
@@ -16,7 +35,7 @@ export function getSongList(setSongList) {
     .catch((error) => console.error(error));
 }
 
-export function addRating(song_id, rating) {
+export function addRating(user, song_id, rating) {
   fetch(api + "rating/", {
     method: "POST",
     headers: {
@@ -25,10 +44,10 @@ export function addRating(song_id, rating) {
     },
     body: JSON.stringify({
       song_id: song_id,
-      username: "test1",
+      username: user,
       rating: rating,
     }),
-  }).then(console.log("yay!!! rating for new song added"));
+  }).then(console.log("Hi!"+ user + " yay!!! rating for new song added"));
 }
 
 export function addSong(item) {
@@ -91,13 +110,13 @@ export function updateRating(song_info, rating) {
   }).then(console.log("yay, its been updated 😍!!!"));
 }
 
-export function handleRating(song_id, rating, setSongList) {
-  fetch(api + "rating/?username=" + "test1" + "&song_id=" + song_id)
+export function handleRating(user, song_id, rating, setSongList) {
+  fetch(api + "rating/?username=" + user + "&song_id=" + song_id)
     .then((response) => response.json())
     .then((json) => {
       if (json.length === 0) {
-        addRating(song_id, rating);
-        console.log("add");
+        addRating(user, song_id, rating);
+        console.log(user+"added");
       } else {
         updateRating(json[0], rating);
         console.log("update");
