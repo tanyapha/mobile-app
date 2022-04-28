@@ -8,11 +8,16 @@ import {
 } from "react-native";
 import * as Navigation from "./Navigation";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ActivityIndicator } from "react-native";
+
+// const api = "http://127.0.0.1:8000/api/auth/login";
+const api = "https://songrater-comp333.herokuapp.com/api/auth/login";
 
 export default class Login extends Component {
   state = {
     username: "",
     password: "",
+    loading: false,
   };
 
   handleSubmit = async () => {
@@ -24,7 +29,7 @@ export default class Login extends Component {
       alert("Please enter password");
       return;
     }
-    fetch("https://songrater-comp333.herokuapp.com/api/auth/login", {
+    fetch(api, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -89,20 +94,16 @@ export default class Login extends Component {
             onChangeText={this.onPasswordChanged.bind(this)}
           />
         </View>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.btText} onPress={this.handleSubmit}>
-            Log In
-          </Text>
+        <TouchableOpacity style={styles.button} onPress={this.handleSubmit}>
+          <Text style={styles.btText}>Log In</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
-          <Text
-            onPress={() => {
-              Navigation.navigate("Dashboard");
-            }}
-            style={styles.btText}
-          >
-            Dashboard
-          </Text>
+        <TouchableOpacity
+          onPress={() => {
+            Navigation.navigate("Dashboard");
+          }}
+          style={styles.button}
+        >
+          <Text style={styles.btText}>Dashboard</Text>
         </TouchableOpacity>
         <TouchableOpacity>
           <Text style={styles.endText}>Don't have an account yet?</Text>
