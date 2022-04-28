@@ -27,7 +27,7 @@ export default function App() {
     ratings: [],
   });
 
-/*   let [user, setUser] = React.useState("");
+  /*   let [user, setUser] = React.useState("");
   let getName = async () => {
     try {
       const value = await AsyncStorage.getItem("user");
@@ -58,29 +58,30 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <ActivityIndicator size="large"></ActivityIndicator>
+      <Text
+        style={{
+          fontSize: 20,
+          textAlign: "right",
+          paddingTop: 10,
+          marginRight: 20,
+          fontFamily: "PoppinsBold",
+          letterSpacing: 1.5,
+        }}
+      >
+        Hi {user.charAt(0).toUpperCase() + user.slice(1)}!
+      </Text>
+      {/* <ActivityIndicator size="large"></ActivityIndicator> */}
       {/* <StatusBar style="auto" /> */}
       <Text
         style={{
           fontSize: 40,
           textAlign: "center",
-          paddingTop: 50,
+          paddingTop: 20,
           fontFamily: "PoppinsBold",
           letterSpacing: 1.5,
         }}
       >
         Song Rater
-      </Text>
-      <Text
-        style={{
-          fontSize: 20,
-          textAlign: 'center',
-          paddingTop: 10,
-          fontFamily: 'PoppinsBold',
-          letterSpacing : 1.5,
-        }}
-      >
-        Hi {user.charAt(0).toUpperCase()+user.slice(1)}
       </Text>
       <Button
         title="New song"

@@ -18,19 +18,27 @@ export default function Edit({ route, navigation }) {
   };
 
   return (
-    <View>
-      <Text>Song Name</Text>
+    <View
+      style={{
+        flexDirection: "column",
+        justifyContent: "center",
+        alignContent: "center",
+        flex: 1,
+        backgroundColor: "#FDFEFE",
+      }}
+    >
+      <Text style={styles.songFormText}>Song Name</Text>
       <TextInput
         style={styles.input}
         autoCapitalize="none"
-        defaultValue={JSON.stringify(song)}
+        defaultValue={JSON.stringify(song).replaceAll('"', "")}
         onChangeText={(val) => setUpSong(val)}
       />
-      <Text>Artist Name</Text>
+      <Text style={styles.songFormText}>Artist Name</Text>
       <TextInput
         style={styles.input}
         autoCapitalize="none"
-        defaultValue={JSON.stringify(artist)}
+        defaultValue={JSON.stringify(artist).replaceAll('"', "")}
         onChangeText={(val) => setUpArtist(val)}
       />
       <Button title="Save" onPress={handleSubmit} />
