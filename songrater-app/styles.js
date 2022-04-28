@@ -52,6 +52,16 @@ export const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
+  buttonContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  button: {
+   padding: 10,
+   elevation: 2,
+   alignItems: 'center',
+  },
   modalMainText: {
     fontFamily: "PoppinsBold",
     fontSize: 25,
