@@ -20,25 +20,10 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function App() {
   let [songItem, setSongItem] = React.useState({
-    id: "tanya",
-    song: "hi",
+    song: "",
     artist: "",
-    rating: undefined,
-    ratings: [],
+    rating: "",
   });
-
-  /*   let [user, setUser] = React.useState("");
-  let getName = async () => {
-    try {
-      const value = await AsyncStorage.getItem("user");
-      if (value !== null) {
-        setUser(value);
-        console.log(user);
-      }
-    } catch (error) {
-      console.log("error");
-    }
-  }; */
 
   let [user, setUser] = React.useState("");
   let [userItem, setUserItem] = React.useState([]);
@@ -86,7 +71,12 @@ export default function App() {
       <Button
         title="New song"
         onPress={() => {
-          Navigation.navigate("SongForm");
+          Navigation.navigate("SongForm", {
+            username: user, 
+            song: songItem.song,
+            artist: songItem.artist,
+            rating: songItem.rating,
+          });
         }}
       />
       <SongTiles songList={songList} setSongList={setSongList} user={user} />

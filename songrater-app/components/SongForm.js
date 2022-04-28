@@ -6,25 +6,18 @@ import { addSong } from "./API";
 import StarRatingDisplay from "./StarRatingDisplay";
 import { Rating } from "react-native-ratings";
 
-export default class SongForm extends Component {
-  state = {
-    song: "",
-    artist: "",
-    rating: "",
+export default function SongForm({route}) {
+  const {username, song, artist, rating } = route.params;
+  const [upSong, setUpSong] = React.useState(song);
+  const [upArtist, setUpArtist] = React.useState(artist);
+  const [upRating, setUpRating] = React.useState(rating);
+
+  const handleSubmit = async () => {
+    addSong(username, upSong, upArtist, upRating);
+    Navigation.navigate("Dashboard");
   };
 
-  changeRating = (val) => {
-    this.setState({ rating: val });
-  };
-
-  handleSubmit = async () => {
-    addSong(this.state);
-    setTimeout(() => {
-      Navigation.navigate("Dashboard");
-    }, 50);
-  };
-
-  render() {
+  //render() {
     return (
       <View
         style={{
@@ -40,23 +33,27 @@ export default class SongForm extends Component {
           style={styles.input}
           autoCapitalize="none"
           placeholder="Enter a song name"
-          onChangeText={(val) => this.setState({ song: val })}
+          //onChangeText={(val) => this.setState({ song: val })}
+          defaultValue={JSON.stringify(song).replaceAll('"', "")}
+          onChangeText={(val) => setUpSong(val)}
         />
         <Text style={styles.songFormText}>Artist Name</Text>
         <TextInput
           style={styles.input}
           autoCapitalize="none"
           placeholder="Enter an artist name"
-          onChangeText={(val) => this.setState({ artist: val })}
+          //onChangeText={(val) => this.setState({ artist: val })}
+          defaultValue={JSON.stringify(artist).replaceAll('"', "")}
+          onChangeText={(val) => setUpArtist(val)}
         />
         <Text style={styles.songFormText}>Rating</Text>
-        <StarRatingDisplay changeRating={this.changeRating}></StarRatingDisplay>
+        <StarRatingDisplay changeRating={(val) => setUpRating(val)}></StarRatingDisplay>
         <Button
           title="Save"
-          onPress={this.handleSubmit}
-          disabled={this.state.song === "" || this.state.artist === ""}
+          onPress={handleSubmit}
+          disabled={upSong === "" || upArtist === ""}
         />
       </View>
     );
-  }
+  //}
 }

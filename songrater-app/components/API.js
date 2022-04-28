@@ -46,7 +46,7 @@ export function addRating(user, song_id, rating) {
   }).then(console.log("Hi!" + user + " yay!!! rating for new song added"));
 }
 
-export function addSong(item) {
+export function addSong(user,newsong,newartist,newrating) {
   fetch(api + "song/", {
     method: "POST",
     headers: {
@@ -54,13 +54,13 @@ export function addSong(item) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      song: item.song,
-      artist: item.artist,
+      song: newsong,
+      artist: newartist,
     }),
   })
     .then((response) => response.json())
     .then((data) => {
-      addRating(data.id, item.rating);
+      addRating(user,data.id, newrating);
     });
 }
 
