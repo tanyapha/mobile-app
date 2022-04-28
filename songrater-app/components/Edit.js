@@ -9,10 +9,11 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 export default function Edit({ route, navigation }) {
   const { song, artist, id } = route.params;
-  const [upSong, setUpSong] = React.useState([]);
-  const [upArtist, setUpArtist] = React.useState([]);
+  const [upSong, setUpSong] = React.useState(song);
+  const [upArtist, setUpArtist] = React.useState(artist);
 
   const handleSubmit = () => {
+    console.log(upSong, upArtist, id);
     updateSong(upSong, upArtist, id);
     Navigation.navigate("Dashboard");
   };
@@ -39,7 +40,10 @@ export default function Edit({ route, navigation }) {
         style={styles.input}
         autoCapitalize="none"
         defaultValue={JSON.stringify(artist).replaceAll('"', "")}
-        onChangeText={(val) => setUpArtist(val)}
+        onChangeText={(val) => {
+          console.log(val);
+          setUpArtist(val);
+        }}
       />
       <Button title="Save" onPress={handleSubmit} />
     </View>
