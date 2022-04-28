@@ -19,12 +19,6 @@ import { useIsFocused } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function App() {
-  let [songItem, setSongItem] = React.useState({
-    song: "",
-    artist: "",
-    rating: "",
-  });
-
   let [user, setUser] = React.useState("");
   let [userItem, setUserItem] = React.useState([]);
   let [songList, setSongList] = React.useState([]);
@@ -73,9 +67,6 @@ export default function App() {
         onPress={() => {
           Navigation.navigate("SongForm", {
             username: user, 
-            song: songItem.song,
-            artist: songItem.artist,
-            rating: songItem.rating,
           });
         }}
       />

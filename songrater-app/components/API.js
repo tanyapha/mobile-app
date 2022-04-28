@@ -11,7 +11,6 @@ export async function getUsername(setUser) {
     const value = await AsyncStorage.getItem("user");
     if (value !== null) {
       setUser(value);
-      console.log("Hi" + value);
     }
   } catch (error) {
     console.log("error");
@@ -43,7 +42,7 @@ export function addRating(user, song_id, rating) {
       username: user,
       rating: rating,
     }),
-  }).then(console.log("Hi!" + user + " yay!!! rating for new song added"));
+  }).then(console.log("Yay " + user + "!!! rating for new song added"));
 }
 
 export function addSong(user,newsong,newartist,newrating) {
@@ -68,7 +67,7 @@ export function deleteSong(id, setSongList) {
   fetch(api + "song/" + id + "/", {
     method: "DELETE",
   })
-    .then(console.log(id))
+    .then(console.log('DELETE song id: '+ id))
     .then(
       setTimeout(() => {
         getSongList(setSongList);
@@ -103,7 +102,7 @@ export function updateRating(song_info, rating) {
       username: song_info.username,
       rating: rating,
     }),
-  }).then(console.log("yay, its been updated 😍!!!"));
+  }).then(console.log("yay " + song_info.username +'! its been updated 😍!!!'));
 }
 
 export function handleRating(user, song_id, rating, setSongList) {
@@ -112,10 +111,10 @@ export function handleRating(user, song_id, rating, setSongList) {
     .then((response) => response.json())
     .then((json) => {
       if (json.length === 0) {
-        console.log(user + "added");
+        console.log(user + " added");
         addRating(user, song_id, rating);
       } else {
-        console.log("update");
+        console.log(user + "updated");
         updateRating(json[0], rating);
       }
     })

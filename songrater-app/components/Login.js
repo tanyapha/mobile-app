@@ -46,7 +46,6 @@ export default class Login extends Component {
           alert(
             "Incorrect credentials. Please check your username or password."
           );
-          //setErrorText(true);
         } else {
           console.log(
             "Hi!" + data.user.username + "; Your Token: " + data.token
@@ -57,7 +56,6 @@ export default class Login extends Component {
           Navigation.navigate("Dashboard");
         }
       })
-      // need to fix the error message displaying stuff
       .catch((err) => console.error(err));
   };
 

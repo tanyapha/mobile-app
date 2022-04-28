@@ -1,18 +1,17 @@
-import React, { Component } from "react";
+import React from "react";
 import { styles } from "../styles";
-import { Text, View, StyleSheet, TextInput, Alert, Button } from "react-native";
+import { Text, View, TextInput, Button } from "react-native";
 import * as Navigation from "./Navigation";
 import { addSong } from "./API";
 import StarRatingDisplay from "./StarRatingDisplay";
-import { Rating } from "react-native-ratings";
 
 export default function SongForm({route}) {
-  const {username, song, artist, rating } = route.params;
-  const [upSong, setUpSong] = React.useState(song);
-  const [upArtist, setUpArtist] = React.useState(artist);
-  const [upRating, setUpRating] = React.useState(rating);
+  const {username} = route.params;
+  const [upSong, setUpSong] = React.useState("");
+  const [upArtist, setUpArtist] = React.useState("");
+  const [upRating, setUpRating] = React.useState("");
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     addSong(username, upSong, upArtist, upRating);
     Navigation.navigate("Dashboard");
   };
@@ -33,8 +32,6 @@ export default function SongForm({route}) {
           style={styles.input}
           autoCapitalize="none"
           placeholder="Enter a song name"
-          //onChangeText={(val) => this.setState({ song: val })}
-          defaultValue={JSON.stringify(song).replaceAll('"', "")}
           onChangeText={(val) => setUpSong(val)}
         />
         <Text style={styles.songFormText}>Artist Name</Text>
@@ -42,8 +39,6 @@ export default function SongForm({route}) {
           style={styles.input}
           autoCapitalize="none"
           placeholder="Enter an artist name"
-          //onChangeText={(val) => this.setState({ artist: val })}
-          defaultValue={JSON.stringify(artist).replaceAll('"', "")}
           onChangeText={(val) => setUpArtist(val)}
         />
         <Text style={styles.songFormText}>Rating</Text>

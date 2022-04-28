@@ -33,7 +33,7 @@ export default function RatingModal(props) {
     console.log("The song was deleted!");
     setModalVisible(false);
   };
-  console.log(rating);
+  //console.log(rating);
 
   return (
     <Modal transparent={true} visible={true} isOpen={props.modalVisible}>
