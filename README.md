@@ -78,3 +78,19 @@ expo start
 - In theopening browser window (Connection: LAN) click run on iOS simulator. If there is an error, try running `expo upgrade`.
 
 - The Expo server can be stopped with `ctrl + c`.
+### How to Use the App
+
+#### Register or Login
+If you have already created an account you can login in, otherwise click on the "Register Button". After you have registered, you should be redirected to the login page where you can login.
+
+#### create new song
+If you want to add a new song, click "new song" and add information.
+
+#### update song information
+click the song tile and press the edit button. this will bring you to a page to edit the song title and artist
+
+#### add/update your rating
+click the song tile and click on the number of stars you want to rate the song. click rate. this will either update or add your rating.
+
+#### delete song
+To delete a song, click on the songtile and then press the delete button
